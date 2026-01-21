@@ -1,0 +1,343 @@
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  padding: 24px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loading,
+.emptyState {
+  padding: 40px;
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+}
+
+.documentsList {
+  min-width: 0;
+}
+
+.documentItem {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 8px;
+}
+
+.documentItem:hover {
+  border-color: #667eea;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.1);
+}
+
+.documentItem.selected {
+  border-color: #667eea;
+  background-color: #f0f4ff;
+}
+
+.documentInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.documentName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.documentStatus {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.statusApproved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.statusRejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.statusPending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.statusReview {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.documentMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+}
+
+.documentSource {
+  text-transform: uppercase;
+}
+
+.documentDate {
+  color: #999;
+}
+
+.documentDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.documentPreview {
+  margin-bottom: 24px;
+}
+
+.previewPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  border: 2px dashed #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.previewPlaceholder svg {
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.previewFileName {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.downloadButton {
+  padding: 8px 20px;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.downloadButton:hover {
+  background-color: #5568d3;
+}
+
+.extractedFields {
+  margin-top: 24px;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.fieldsTable {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fieldsTableHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.fieldsTableRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.fieldsTableRow:last-child {
+  border-bottom: none;
+}
+
+.fieldsTableCell {
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.fieldsTableHeader .fieldsTableCell {
+  font-weight: 600;
+  color: #333;
+}
+
+.fieldsTableRow .fieldsTableCell {
+  color: #666;
+}
+
+.fieldsTableRow .fieldsTableCell:first-child {
+  font-weight: 500;
+}
+
+.fieldsSource {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+}
+
+.validationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.validationItem {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  background: white;
+}
+
+.validationResultok {
+  border-left: 4px solid #28a745;
+}
+
+.validationResultwarning {
+  border-left: 4px solid #ffc107;
+}
+
+.validationResultfail {
+  border-left: 4px solid #dc3545;
+}
+
+.validationHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.validationIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.validationInfo {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.validationName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.validationResult {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.validationResultok .validationResult {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.validationResultwarning .validationResult {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.validationResultfail .validationResult {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.validationDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.validationField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.validationLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.validationValue {
+  font-size: 14px;
+  color: #333;
+}
+
+.validationExpandable {
+  margin-top: 8px;
+}
+
+.validationSummary {
+  font-size: 14px;
+  font-weight: 500;
+  color: #667eea;
+  cursor: pointer;
+  user-select: none;
+}
+
+.validationSummary:hover {
+  text-decoration: underline;
+}
+
+.validationExpandableContent {
+  margin-top: 8px;
+  padding: 12px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.emptySection {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+}

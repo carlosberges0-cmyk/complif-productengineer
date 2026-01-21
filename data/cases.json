@@ -1,0 +1,167 @@
+[
+  {
+    "id": "100",
+    "name": "Jorge Campos",
+    "status": "PENDIENTE",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "WARN",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": true
+  },
+  {
+    "id": "101",
+    "name": "María González",
+    "status": "EN_REVISION",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": true
+  },
+  {
+    "id": "102",
+    "name": "Carlos Rodríguez",
+    "status": "APROBADO",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": false
+  },
+  {
+    "id": "103",
+    "name": "Ana Martínez",
+    "status": "PENDIENTE",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "WARN",
+      "matrizRiesgo": "WARN"
+    },
+    "requiereDecisionManual": true
+  },
+  {
+    "id": "104",
+    "name": "Luis Fernández",
+    "status": "RECHAZADO",
+    "caseData": {
+      "validacionIdentidad": "FAIL",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": false
+  },
+  {
+    "id": "105",
+    "name": "Laura Sánchez",
+    "status": "PENDIENTE",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": true
+  },
+  {
+    "id": "106",
+    "name": "Diego Pérez",
+    "status": "EN_REVISION",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "WARN",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": true
+  },
+  {
+    "id": "107",
+    "name": "Sofía López",
+    "status": "APROBADO",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": false
+  },
+  {
+    "id": "108",
+    "name": "Miguel Torres",
+    "status": "PENDIENTE",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "WARN"
+    },
+    "requiereDecisionManual": true
+  },
+  {
+    "id": "109",
+    "name": "Valentina Ramírez",
+    "status": "PENDIENTE",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "WARN",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": true
+  },
+  {
+    "id": "110",
+    "name": "Andrés Morales",
+    "status": "EN_REVISION",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": true
+  },
+  {
+    "id": "111",
+    "name": "Camila Herrera",
+    "status": "APROBADO",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": false
+  },
+  {
+    "id": "112",
+    "name": "Fernando Castro",
+    "status": "PENDIENTE",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": true
+  },
+  {
+    "id": "113",
+    "name": "Isabella Ruiz",
+    "status": "RECHAZADO",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "FAIL",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": false
+  },
+  {
+    "id": "114",
+    "name": "Ricardo Vargas",
+    "status": "PENDIENTE",
+    "caseData": {
+      "validacionIdentidad": "PASS",
+      "origenFondos": "PASS",
+      "matrizRiesgo": "PASS"
+    },
+    "requiereDecisionManual": true
+  }
+]

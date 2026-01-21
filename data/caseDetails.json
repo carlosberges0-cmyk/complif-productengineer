@@ -1,0 +1,3120 @@
+{
+  "100": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-15T14:54:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "WARN",
+        "descripcionCorta": "Vence en 14 días",
+        "regla": "expiry_date > today && expiry_date <= today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2024-04-29"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Jorge Campos"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "20-12345678-9"
+        }
+      },
+      {
+        "id": "format_required",
+        "titulo": "Formato requerido",
+        "resultado": "FAIL",
+        "descripcionCorta": "Falta campo obligatorio: Dirección",
+        "regla": "required_fields.all_present",
+        "evidencia": {
+          "campo": "address",
+          "valor": "missing"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "20-12345678-9"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Jorge Campos"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2024-01-15"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2024-04-29"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$125,000.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "third_party_account",
+        "titulo": "Cuenta en tercero",
+        "icono": "bank"
+      },
+      {
+        "id": "address",
+        "titulo": "Dirección",
+        "icono": "location"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "third_party_account",
+        "tipo": "documento",
+        "descripcion": "Falta documentación de cuenta bancaria en tercero",
+        "severidad": "alta",
+        "accionEsperada": "Solicitar extracto bancario de cuenta en tercero",
+        "fechaLimite": "2024-04-22T23:59:59Z",
+        "bloqueaAprobacion": true
+      },
+      {
+        "id": "address",
+        "tipo": "validacion",
+        "descripcion": "Campo obligatorio 'Dirección' no detectado en el documento",
+        "severidad": "alta",
+        "accionEsperada": "Solicitar re-subida del documento con dirección visible",
+        "fechaLimite": "2024-04-20T23:59:59Z",
+        "bloqueaAprobacion": true
+      }
+    ],
+    "pendingRequirements": [
+      {
+        "id": "third_party_account",
+        "docType": "extracto bancario de cuenta en tercero",
+        "reason": "Falta documentación de cuenta bancaria en tercero",
+        "dueDate": "2024-04-22T23:59:59Z"
+      }
+    ],
+    "validationIssues": [
+      {
+        "id": "address",
+        "ruleName": "Solicitar re-subida del documento con dirección visible",
+        "severity": "alta",
+        "message": "Campo obligatorio 'Dirección' no detectado en el documento"
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-14T10:30:00Z",
+        "updatedAt": "2024-04-15T14:54:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Jorge_Campos_20240414.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "Jorge Campos",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-04-29"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "warning",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Vence en 14 días",
+            "impact": "Requiere revisión manual",
+            "details": "El documento vence el 29/04/2024, dentro de los próximos 30 días. Se recomienda solicitar renovación."
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          },
+          {
+            "id": "format_required",
+            "name": "Formato requerido",
+            "result": "fail",
+            "rule": "Campo Dirección obligatorio",
+            "evidence": "Dirección no detectada en el documento",
+            "impact": "Bloquea aprobación",
+            "details": "El documento no contiene el campo 'Dirección' que es obligatorio según normativa vigente."
+          }
+        ]
+      },
+      {
+        "id": "doc_fondos",
+        "name": "Origen de Fondos",
+        "status": "PENDING",
+        "uploadedAt": "2024-04-15T11:00:00Z",
+        "updatedAt": "2024-04-15T11:00:00Z",
+        "source": "MANUAL",
+        "fileName": "Origen_Fondos_Jorge_Campos.pdf",
+        "extractedFields": {},
+        "validations": []
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1",
+        "timestamp": "2024-04-15T14:54:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas sobre documento de identidad",
+        "details": "Validaciones: Vigencia (WARN), Titularidad (PASS), Formato (FAIL)",
+        "relatedDocumentId": "doc_identidad"
+      },
+      {
+        "id": "event_2",
+        "timestamp": "2024-04-15T11:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Origen de Fondos",
+        "details": "Archivo: Origen_Fondos_Jorge_Campos.pdf",
+        "relatedDocumentId": "doc_fondos"
+      },
+      {
+        "id": "event_3",
+        "timestamp": "2024-04-15T10:00:00Z",
+        "type": "Comentario agregado",
+        "actor": "analyst",
+        "summary": "María López: Pendiente revisión de documentos adicionales",
+        "details": "Se requiere documentación adicional para completar la validación",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_4",
+        "timestamp": "2024-04-14T10:30:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Jorge_Campos_20240414.pdf",
+        "relatedDocumentId": "doc_identidad"
+      },
+      {
+        "id": "event_5",
+        "timestamp": "2024-04-14T10:35:00Z",
+        "type": "OCR ejecutado",
+        "actor": "system",
+        "summary": "Proceso OCR completado sobre documento de identidad",
+        "details": "Campos detectados: CUIT, Nombre, Fechas",
+        "relatedDocumentId": "doc_identidad"
+      },
+      {
+        "id": "event_6",
+        "timestamp": "2024-04-14T09:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: Pendiente",
+        "details": "El caso fue creado y asignado para revisión",
+        "relatedDocumentId": null
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "todo",
+        "timestamp": "2024-04-15T10:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "pendiente",
+        "detalle": "Pendiente revisión de documentos adicionales",
+        "origen": "analista",
+        "fecha": "2024-04-15T10:00:00Z",
+        "usuario": "María López"
+      },
+      {
+        "id": "task_2",
+        "titulo": "Validar información bancaria",
+        "status": "todo",
+        "timestamp": "2024-04-15T11:00:00Z",
+        "tipo": "manual",
+        "accion": "Validar información bancaria",
+        "resultado": "pendiente",
+        "detalle": "Esperando documentación de cuenta en tercero",
+        "origen": "analista",
+        "fecha": "2024-04-15T11:00:00Z",
+        "usuario": "María López"
+      },
+      {
+        "id": "task_3",
+        "titulo": "Confirmar datos de contacto",
+        "status": "todo",
+        "timestamp": "2024-04-15T12:00:00Z",
+        "tipo": "manual",
+        "accion": "Confirmar datos de contacto",
+        "resultado": "pendiente",
+        "origen": "analista",
+        "fecha": "2024-04-15T12:00:00Z",
+        "usuario": "María López"
+      },
+      {
+        "id": "task_auto_1",
+        "titulo": "Validación automática de identidad",
+        "status": "done",
+        "timestamp": "2024-04-15T09:30:00Z",
+        "tipo": "automatica",
+        "accion": "Validación automática de identidad",
+        "resultado": "ok",
+        "detalle": "Validación de identidad completada exitosamente",
+        "origen": "sistema",
+        "fecha": "2024-04-15T09:30:00Z"
+      },
+      {
+        "id": "task_auto_2",
+        "titulo": "Detección OCR de campos",
+        "status": "done",
+        "timestamp": "2024-04-15T09:25:00Z",
+        "tipo": "automatica",
+        "accion": "Detección OCR de campos del documento",
+        "resultado": "warn",
+        "detalle": "Algunos campos detectados con baja confianza",
+        "origen": "sistema",
+        "fecha": "2024-04-15T09:25:00Z"
+      }
+    ]
+  },
+  "101": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-14T16:30:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-06-30"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "María González"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "27-23456789-1"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "27-23456789-1"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "María González"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-12-10"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-06-30"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$85,500.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "additional_docs",
+        "titulo": "Documentación adicional",
+        "icono": "document"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "additional_docs",
+        "tipo": "documento",
+        "descripcion": "Se requiere documentación adicional para completar la validación",
+        "severidad": "media",
+        "accionEsperada": "Solicitar documentación complementaria al cliente",
+        "fechaLimite": "2024-04-21T23:59:59Z",
+        "bloqueaAprobacion": false
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "done",
+        "timestamp": "2024-04-14T10:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "ok",
+        "detalle": "Documentación revisada correctamente",
+        "origen": "analista",
+        "fecha": "2024-04-14T10:00:00Z",
+        "usuario": "Carlos Martínez"
+      },
+      {
+        "id": "task_2",
+        "titulo": "Validar información bancaria",
+        "status": "todo",
+        "timestamp": "2024-04-14T11:00:00Z",
+        "tipo": "manual",
+        "accion": "Validar información bancaria",
+        "resultado": "pendiente",
+        "detalle": "Esperando documentación adicional",
+        "origen": "analista",
+        "fecha": "2024-04-14T11:00:00Z",
+        "usuario": "Carlos Martínez"
+      },
+      {
+        "id": "task_auto_1",
+        "titulo": "Validación automática de identidad",
+        "status": "done",
+        "timestamp": "2024-04-14T09:00:00Z",
+        "tipo": "automatica",
+        "accion": "Validación automática de identidad",
+        "resultado": "ok",
+        "detalle": "Validación completada exitosamente",
+        "origen": "sistema",
+        "fecha": "2024-04-14T09:00:00Z"
+      },
+      {
+        "id": "task_auto_2",
+        "titulo": "Detección OCR de campos",
+        "status": "done",
+        "timestamp": "2024-04-14T08:45:00Z",
+        "tipo": "automatica",
+        "accion": "Detección OCR de campos del documento",
+        "resultado": "ok",
+        "origen": "sistema",
+        "fecha": "2024-04-14T08:45:00Z"
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad_101",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-13T10:00:00Z",
+        "updatedAt": "2024-04-14T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_María_González_20240413.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "María González",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-05-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_101",
+        "timestamp": "2024-04-14T14:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: EN_REVISION",
+        "details": "El caso requiere revisión adicional",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_101",
+        "timestamp": "2024-04-13T10:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Validaciones completadas, requiere revisión manual",
+        "relatedDocumentId": "doc_identidad_101"
+      },
+      {
+        "id": "event_3_101",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_María_González_20240413.pdf",
+        "relatedDocumentId": "doc_identidad_101"
+      }
+    ],
+    "pendingRequirements": [
+      {
+        "id": "additional_docs",
+        "docType": "documentación complementaria al cliente",
+        "reason": "Se requiere documentación adicional para completar la validación",
+        "dueDate": "2024-04-21T23:59:59Z"
+      }
+    ],
+    "validationIssues": []
+  },
+  "102": {
+    "criteriosResumen": {
+      "estadoCriterios": "OK",
+      "ultimaEvaluacion": "2024-04-10T09:15:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-12-31"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Carlos Rodríguez"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "20-34567890-2"
+        }
+      },
+      {
+        "id": "format_required",
+        "titulo": "Formato requerido",
+        "resultado": "PASS",
+        "descripcionCorta": "Todos los campos obligatorios presentes",
+        "regla": "required_fields.all_present",
+        "evidencia": {
+          "campo": "all_fields",
+          "valor": "complete"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "20-34567890-2"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Carlos Rodríguez"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-08-20"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-12-31"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$200,000.00"
+      }
+    ],
+    "pendingItems": [],
+    "pendientes": [],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "done",
+        "timestamp": "2024-04-10T09:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "ok",
+        "detalle": "Documentación completa y válida",
+        "origen": "analista",
+        "fecha": "2024-04-10T09:00:00Z",
+        "usuario": "Ana García"
+      },
+      {
+        "id": "task_2",
+        "titulo": "Validar información bancaria",
+        "status": "done",
+        "timestamp": "2024-04-10T10:00:00Z",
+        "tipo": "manual",
+        "accion": "Validar información bancaria",
+        "resultado": "ok",
+        "detalle": "Información bancaria verificada",
+        "origen": "analista",
+        "fecha": "2024-04-10T10:00:00Z",
+        "usuario": "Ana García"
+      },
+      {
+        "id": "task_3",
+        "titulo": "Confirmar datos de contacto",
+        "status": "done",
+        "timestamp": "2024-04-10T11:00:00Z",
+        "tipo": "manual",
+        "accion": "Confirmar datos de contacto",
+        "resultado": "ok",
+        "detalle": "Datos de contacto confirmados",
+        "origen": "analista",
+        "fecha": "2024-04-10T11:00:00Z",
+        "usuario": "Ana García"
+      },
+      {
+        "id": "task_4",
+        "titulo": "Aprobar caso",
+        "status": "done",
+        "timestamp": "2024-04-10T11:30:00Z",
+        "tipo": "manual",
+        "accion": "Aprobar caso",
+        "resultado": "ok",
+        "detalle": "Caso aprobado exitosamente",
+        "origen": "analista",
+        "fecha": "2024-04-10T11:30:00Z",
+        "usuario": "Ana García"
+      },
+      {
+        "id": "task_auto_1",
+        "titulo": "Validación automática de identidad",
+        "status": "done",
+        "timestamp": "2024-04-10T08:30:00Z",
+        "tipo": "automatica",
+        "accion": "Validación automática de identidad",
+        "resultado": "ok",
+        "detalle": "Validación completada exitosamente",
+        "origen": "sistema",
+        "fecha": "2024-04-10T08:30:00Z"
+      },
+      {
+        "id": "task_auto_2",
+        "titulo": "Detección OCR de campos",
+        "status": "done",
+        "timestamp": "2024-04-10T08:15:00Z",
+        "tipo": "automatica",
+        "accion": "Detección OCR de campos del documento",
+        "resultado": "ok",
+        "origen": "sistema",
+        "fecha": "2024-04-10T08:15:00Z"
+      },
+      {
+        "id": "task_auto_3",
+        "titulo": "Validación de consistencia de datos",
+        "status": "done",
+        "timestamp": "2024-04-10T08:45:00Z",
+        "tipo": "automatica",
+        "accion": "Validación de consistencia de datos",
+        "resultado": "ok",
+        "detalle": "Todos los datos son consistentes",
+        "origen": "sistema",
+        "fecha": "2024-04-10T08:45:00Z"
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad",
+        "name": "Documento de Identidad",
+        "status": "APPROVED",
+        "uploadedAt": "2024-04-09T08:00:00Z",
+        "updatedAt": "2024-04-10T11:30:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Carlos_Rodriguez_20240409.pdf",
+        "extractedFields": {
+          "CUIT": "20-34567890-2",
+          "Nombre": "Carlos Rodríguez",
+          "Fecha de emisión": "2023-08-20",
+          "Fecha de vencimiento": "2025-12-31"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1",
+        "timestamp": "2024-04-10T11:30:00Z",
+        "type": "Aprobación",
+        "actor": "analyst",
+        "summary": "Ana García aprobó el caso",
+        "details": "Caso aprobado exitosamente - Todos los criterios cumplidos",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2",
+        "timestamp": "2024-04-10T10:00:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Todas las validaciones pasaron correctamente",
+        "relatedDocumentId": "doc_identidad"
+      },
+      {
+        "id": "event_3",
+        "timestamp": "2024-04-09T08:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Carlos_Rodriguez_20240409.pdf",
+        "relatedDocumentId": "doc_identidad"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": []
+  },
+  "103": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-13T11:20:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "WARN",
+        "descripcionCorta": "Vence en 20 días",
+        "regla": "expiry_date > today && expiry_date <= today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2024-05-03"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Ana Martínez"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "27-45678901-2"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "27-45678901-2"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Ana Martínez"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2024-02-01"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2024-05-03"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$95,000.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "risk_assessment",
+        "titulo": "Evaluación de riesgo",
+        "icono": "risk"
+      },
+      {
+        "id": "funds_source",
+        "titulo": "Origen de fondos",
+        "icono": "money"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "risk_assessment",
+        "tipo": "validacion",
+        "descripcion": "Requiere evaluación de riesgo adicional debido a monto elevado",
+        "severidad": "alta",
+        "accionEsperada": "Completar evaluación de riesgo detallada",
+        "fechaLimite": "2024-04-20T23:59:59Z",
+        "bloqueaAprobacion": true
+      },
+      {
+        "id": "funds_source",
+        "tipo": "validacion",
+        "descripcion": "Origen de fondos requiere verificación adicional",
+        "severidad": "media",
+        "accionEsperada": "Solicitar documentación de origen de fondos",
+        "fechaLimite": "2024-04-18T23:59:59Z",
+        "bloqueaAprobacion": false
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "todo",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "pendiente",
+        "detalle": "Pendiente revisión de documentación",
+        "origen": "analista",
+        "fecha": "2024-04-13T10:00:00Z",
+        "usuario": "Luis Fernández"
+      },
+      {
+        "id": "task_auto_1",
+        "titulo": "Validación automática de identidad",
+        "status": "done",
+        "timestamp": "2024-04-13T09:30:00Z",
+        "tipo": "automatica",
+        "accion": "Validación automática de identidad",
+        "resultado": "ok",
+        "detalle": "Validación completada",
+        "origen": "sistema",
+        "fecha": "2024-04-13T09:30:00Z"
+      },
+      {
+        "id": "task_auto_2",
+        "titulo": "Detección OCR de campos",
+        "status": "done",
+        "timestamp": "2024-04-13T09:15:00Z",
+        "tipo": "automatica",
+        "accion": "Detección OCR de campos del documento",
+        "resultado": "warn",
+        "detalle": "Algunos campos con advertencias",
+        "origen": "sistema",
+        "fecha": "2024-04-13T09:15:00Z"
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad_103",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-13T10:00:00Z",
+        "updatedAt": "2024-04-14T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Ana_Martínez_20240413.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "Ana Martínez",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-05-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_103",
+        "timestamp": "2024-04-14T14:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: PENDIENTE",
+        "details": "El caso requiere revisión adicional",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_103",
+        "timestamp": "2024-04-13T10:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Validaciones completadas, requiere revisión manual",
+        "relatedDocumentId": "doc_identidad_103"
+      },
+      {
+        "id": "event_3_103",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Ana_Martínez_20240413.pdf",
+        "relatedDocumentId": "doc_identidad_103"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": [
+      {
+        "id": "risk_assessment",
+        "ruleName": "Completar evaluación de riesgo detallada",
+        "severity": "alta",
+        "message": "Requiere evaluación de riesgo adicional debido a monto elevado"
+      },
+      {
+        "id": "funds_source",
+        "ruleName": "Solicitar documentación de origen de fondos",
+        "severity": "media",
+        "message": "Origen de fondos requiere verificación adicional"
+      }
+    ]
+  },
+  "104": {
+    "criteriosResumen": {
+      "estadoCriterios": "VALIDATION_FAILED",
+      "ultimaEvaluacion": "2024-04-08T14:00:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "FAIL",
+        "descripcionCorta": "Documento vencido",
+        "regla": "expiry_date > today",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2024-03-15"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "FAIL",
+        "descripcionCorta": "Titular no coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Luis Fernández (no coincide)"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "20-56789012-3"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "20-56789012-3"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Luis Fernández"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-01-10"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2024-03-15"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$150,000.00"
+      }
+    ],
+    "pendingItems": [],
+    "pendientes": [],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "done",
+        "timestamp": "2024-04-08T09:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "ok",
+        "detalle": "Documentación revisada",
+        "origen": "analista",
+        "fecha": "2024-04-08T09:00:00Z",
+        "usuario": "Roberto Sánchez"
+      },
+      {
+        "id": "task_2",
+        "titulo": "Validar información bancaria",
+        "status": "done",
+        "timestamp": "2024-04-08T10:00:00Z",
+        "tipo": "manual",
+        "accion": "Validar información bancaria",
+        "resultado": "ok",
+        "detalle": "Información bancaria verificada",
+        "origen": "analista",
+        "fecha": "2024-04-08T10:00:00Z",
+        "usuario": "Roberto Sánchez"
+      },
+      {
+        "id": "task_3",
+        "titulo": "Validar titularidad del documento",
+        "status": "done",
+        "timestamp": "2024-04-08T11:00:00Z",
+        "tipo": "manual",
+        "accion": "Validar titularidad del documento",
+        "resultado": "fail",
+        "detalle": "Titular del documento no coincide con los datos registrados del cliente",
+        "origen": "analista",
+        "fecha": "2024-04-08T11:00:00Z",
+        "usuario": "Roberto Sánchez"
+      },
+      {
+        "id": "task_4",
+        "titulo": "Verificar vigencia del documento",
+        "status": "done",
+        "timestamp": "2024-04-08T12:00:00Z",
+        "tipo": "manual",
+        "accion": "Verificar vigencia del documento",
+        "resultado": "fail",
+        "detalle": "Documento vencido el 15/03/2024",
+        "origen": "analista",
+        "fecha": "2024-04-08T12:00:00Z",
+        "usuario": "Roberto Sánchez"
+      },
+      {
+        "id": "task_5",
+        "titulo": "Rechazar caso",
+        "status": "done",
+        "timestamp": "2024-04-08T14:00:00Z",
+        "tipo": "manual",
+        "accion": "Rechazar caso",
+        "resultado": "fail",
+        "detalle": "Caso rechazado: Documento vencido y titularidad no coincide",
+        "origen": "analista",
+        "fecha": "2024-04-08T14:00:00Z",
+        "usuario": "Roberto Sánchez"
+      },
+      {
+        "id": "task_auto_1",
+        "titulo": "Validación automática de identidad",
+        "status": "done",
+        "timestamp": "2024-04-08T08:30:00Z",
+        "tipo": "automatica",
+        "accion": "Validación automática de identidad",
+        "resultado": "fail",
+        "detalle": "Validación falló: titularidad no coincide",
+        "origen": "sistema",
+        "fecha": "2024-04-08T08:30:00Z"
+      },
+      {
+        "id": "task_auto_2",
+        "titulo": "Detección OCR de campos",
+        "status": "done",
+        "timestamp": "2024-04-08T08:15:00Z",
+        "tipo": "automatica",
+        "accion": "Detección OCR de campos del documento",
+        "resultado": "ok",
+        "origen": "sistema",
+        "fecha": "2024-04-08T08:15:00Z"
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad",
+        "name": "Documento de Identidad",
+        "status": "REJECTED",
+        "uploadedAt": "2024-04-08T08:00:00Z",
+        "updatedAt": "2024-04-08T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Luis_Fernandez_20240408.pdf",
+        "extractedFields": {
+          "CUIT": "20-56789012-3",
+          "Nombre": "Luis Fernández",
+          "Fecha de emisión": "2023-01-10",
+          "Fecha de vencimiento": "2024-03-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "fail",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy",
+            "evidence": "Documento vencido el 15/03/2024",
+            "impact": "Bloquea aprobación",
+            "details": "El documento está vencido desde el 15 de marzo de 2024."
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "fail",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular no coincide",
+            "impact": "Bloquea aprobación",
+            "details": "El titular del documento no coincide con los datos registrados del cliente."
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1",
+        "timestamp": "2024-04-08T14:00:00Z",
+        "type": "Rechazo",
+        "actor": "analyst",
+        "summary": "Roberto Sánchez rechazó el caso",
+        "details": "Caso rechazado: Documento vencido y titularidad no coincide",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2",
+        "timestamp": "2024-04-08T12:00:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Validaciones automáticas fallaron",
+        "details": "Validaciones: Vigencia (FAIL), Titularidad (FAIL)",
+        "relatedDocumentId": "doc_identidad"
+      },
+      {
+        "id": "event_3",
+        "timestamp": "2024-04-08T08:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Luis_Fernandez_20240408.pdf",
+        "relatedDocumentId": "doc_identidad"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": []
+  },
+  "105": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-12T15:45:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-08-20"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Laura Sánchez"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "27-56789012-3"
+        }
+      },
+      {
+        "id": "format_required",
+        "titulo": "Formato requerido",
+        "resultado": "PASS",
+        "descripcionCorta": "Todos los campos obligatorios presentes",
+        "regla": "required_fields.all_present",
+        "evidencia": {
+          "campo": "all_fields",
+          "valor": "complete"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "27-56789012-3"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Laura Sánchez"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-11-05"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-08-20"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$175,000.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "verification_call",
+        "titulo": "Llamada de verificación",
+        "icono": "phone"
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "todo",
+        "timestamp": "2024-04-12T15:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "pendiente",
+        "origen": "analista",
+        "fecha": "2024-04-12T15:00:00Z",
+        "usuario": "Analista Sistema"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "verification_call",
+        "tipo": "validacion",
+        "descripcion": "Falta llamada de verificación",
+        "severidad": "media",
+        "accionEsperada": "Solicitar llamada de verificación",
+        "bloqueaAprobacion": false
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad_105",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-13T10:00:00Z",
+        "updatedAt": "2024-04-14T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Laura_Sánchez_20240413.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "Laura Sánchez",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-05-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_105",
+        "timestamp": "2024-04-14T14:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: PENDIENTE",
+        "details": "El caso requiere revisión adicional",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_105",
+        "timestamp": "2024-04-13T10:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Validaciones completadas, requiere revisión manual",
+        "relatedDocumentId": "doc_identidad_105"
+      },
+      {
+        "id": "event_3_105",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Laura_Sánchez_20240413.pdf",
+        "relatedDocumentId": "doc_identidad_105"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": [
+      {
+        "id": "verification_call",
+        "ruleName": "Solicitar llamada de verificación",
+        "severity": "media",
+        "message": "Falta llamada de verificación"
+      }
+    ]
+  },
+  "106": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-11T13:30:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-10-15"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Diego Pérez"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "20-67890123-4"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "20-67890123-4"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Diego Pérez"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-09-12"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-10-15"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$110,000.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "bank_statement",
+        "titulo": "Extracto bancario",
+        "icono": "bank"
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "todo",
+        "timestamp": "2024-04-11T13:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "pendiente",
+        "origen": "analista",
+        "fecha": "2024-04-11T13:00:00Z",
+        "usuario": "Analista Sistema"
+      },
+      {
+        "id": "task_2",
+        "titulo": "Validar información bancaria",
+        "status": "todo",
+        "timestamp": "2024-04-11T14:00:00Z",
+        "tipo": "manual",
+        "accion": "Validar información bancaria",
+        "resultado": "pendiente",
+        "origen": "analista",
+        "fecha": "2024-04-11T14:00:00Z",
+        "usuario": "Analista Sistema"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "bank_statement",
+        "tipo": "documento",
+        "descripcion": "Falta extracto bancario",
+        "severidad": "media",
+        "accionEsperada": "Solicitar extracto bancario",
+        "bloqueaAprobacion": false
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad_106",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-13T10:00:00Z",
+        "updatedAt": "2024-04-14T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Diego_Pérez_20240413.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "Diego Pérez",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-05-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_106",
+        "timestamp": "2024-04-14T14:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: EN_REVISION",
+        "details": "El caso requiere revisión adicional",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_106",
+        "timestamp": "2024-04-13T10:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Validaciones completadas, requiere revisión manual",
+        "relatedDocumentId": "doc_identidad_106"
+      },
+      {
+        "id": "event_3_106",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Diego_Pérez_20240413.pdf",
+        "relatedDocumentId": "doc_identidad_106"
+      }
+    ],
+    "pendingRequirements": [
+      {
+        "id": "bank_statement",
+        "docType": "extracto bancario",
+        "reason": "Falta extracto bancario",
+        "dueDate": null
+      }
+    ],
+    "validationIssues": []
+  },
+  "107": {
+    "criteriosResumen": {
+      "estadoCriterios": "OK",
+      "ultimaEvaluacion": "2024-04-09T10:00:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2026-01-31"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Sofía López"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "27-67890123-4"
+        }
+      },
+      {
+        "id": "format_required",
+        "titulo": "Formato requerido",
+        "resultado": "PASS",
+        "descripcionCorta": "Todos los campos obligatorios presentes",
+        "regla": "required_fields.all_present",
+        "evidencia": {
+          "campo": "all_fields",
+          "valor": "complete"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "27-67890123-4"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Sofía López"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-07-25"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2026-01-31"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$225,000.00"
+      }
+    ],
+    "pendingItems": [],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "done",
+        "timestamp": "2024-04-09T09:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "ok",
+        "detalle": "Documentación completa y válida",
+        "origen": "analista",
+        "fecha": "2024-04-09T09:00:00Z",
+        "usuario": "Patricia Gómez"
+      },
+      {
+        "id": "task_2",
+        "titulo": "Validar información bancaria",
+        "status": "done",
+        "timestamp": "2024-04-09T10:00:00Z",
+        "tipo": "manual",
+        "accion": "Validar información bancaria",
+        "resultado": "ok",
+        "detalle": "Información bancaria verificada correctamente",
+        "origen": "analista",
+        "fecha": "2024-04-09T10:00:00Z",
+        "usuario": "Patricia Gómez"
+      },
+      {
+        "id": "task_3",
+        "titulo": "Aprobar caso",
+        "status": "done",
+        "timestamp": "2024-04-09T10:30:00Z",
+        "tipo": "manual",
+        "accion": "Aprobar caso",
+        "resultado": "ok",
+        "detalle": "Caso aprobado exitosamente - Todos los criterios cumplidos",
+        "origen": "analista",
+        "fecha": "2024-04-09T10:30:00Z",
+        "usuario": "Patricia Gómez"
+      },
+      {
+        "id": "task_auto_1",
+        "titulo": "Validación automática de identidad",
+        "status": "done",
+        "timestamp": "2024-04-09T08:30:00Z",
+        "tipo": "automatica",
+        "accion": "Validación automática de identidad",
+        "resultado": "ok",
+        "detalle": "Validación completada exitosamente",
+        "origen": "sistema",
+        "fecha": "2024-04-09T08:30:00Z"
+      },
+      {
+        "id": "task_auto_2",
+        "titulo": "Detección OCR de campos",
+        "status": "done",
+        "timestamp": "2024-04-09T08:15:00Z",
+        "tipo": "automatica",
+        "accion": "Detección OCR de campos del documento",
+        "resultado": "ok",
+        "origen": "sistema",
+        "fecha": "2024-04-09T08:15:00Z"
+      },
+      {
+        "id": "task_auto_3",
+        "titulo": "Validación de consistencia de datos",
+        "status": "done",
+        "timestamp": "2024-04-09T08:45:00Z",
+        "tipo": "automatica",
+        "accion": "Validación de consistencia de datos",
+        "resultado": "ok",
+        "detalle": "Todos los datos son consistentes",
+        "origen": "sistema",
+        "fecha": "2024-04-09T08:45:00Z"
+      }
+    ],
+    "pendientes": [],
+    "documentos": [
+      {
+        "id": "doc_identidad_107",
+        "name": "Documento de Identidad",
+        "status": "APPROVED",
+        "uploadedAt": "2024-04-09T08:00:00Z",
+        "updatedAt": "2024-04-10T11:30:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Sofía_López_20240409.pdf",
+        "extractedFields": {
+          "CUIT": "20-34567890-2",
+          "Nombre": "Sofía López",
+          "Fecha de emisión": "2023-08-20",
+          "Fecha de vencimiento": "2025-12-31"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_107",
+        "timestamp": "2024-04-10T11:30:00Z",
+        "type": "Aprobación",
+        "actor": "analyst",
+        "summary": "Analista aprobó el caso",
+        "details": "Caso aprobado exitosamente - Todos los criterios cumplidos",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_107",
+        "timestamp": "2024-04-10T10:00:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Todas las validaciones pasaron correctamente",
+        "relatedDocumentId": "doc_identidad_107"
+      },
+      {
+        "id": "event_3_107",
+        "timestamp": "2024-04-09T08:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Sofía_López_20240409.pdf",
+        "relatedDocumentId": "doc_identidad_107"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": []
+  },
+  "108": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-14T09:00:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-07-10"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Miguel Torres"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "20-78901234-5"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "20-78901234-5"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Miguel Torres"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-10-18"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-07-10"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$140,000.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "risk_matrix",
+        "titulo": "Matriz de riesgo",
+        "icono": "risk"
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "todo",
+        "timestamp": "2024-04-14T09:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "pendiente",
+        "origen": "analista",
+        "fecha": "2024-04-14T09:00:00Z",
+        "usuario": "Analista Sistema"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "risk_matrix",
+        "tipo": "validacion",
+        "descripcion": "Falta matriz de riesgo",
+        "severidad": "media",
+        "accionEsperada": "Solicitar matriz de riesgo",
+        "bloqueaAprobacion": false
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad_108",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-13T10:00:00Z",
+        "updatedAt": "2024-04-14T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Miguel_Torres_20240413.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "Miguel Torres",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-05-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_108",
+        "timestamp": "2024-04-14T14:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: PENDIENTE",
+        "details": "El caso requiere revisión adicional",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_108",
+        "timestamp": "2024-04-13T10:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Validaciones completadas, requiere revisión manual",
+        "relatedDocumentId": "doc_identidad_108"
+      },
+      {
+        "id": "event_3_108",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Miguel_Torres_20240413.pdf",
+        "relatedDocumentId": "doc_identidad_108"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": [
+      {
+        "id": "risk_matrix",
+        "ruleName": "Solicitar matriz de riesgo",
+        "severity": "media",
+        "message": "Falta matriz de riesgo"
+      }
+    ]
+  },
+  "109": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-13T16:00:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "WARN",
+        "descripcionCorta": "Vence en 25 días",
+        "regla": "expiry_date > today && expiry_date <= today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2024-05-08"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Valentina Ramírez"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "27-78901234-5"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "27-78901234-5"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Valentina Ramírez"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2024-01-20"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2024-05-08"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$90,000.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "funds_verification",
+        "titulo": "Verificación de fondos",
+        "icono": "money"
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "todo",
+        "timestamp": "2024-04-13T16:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "pendiente",
+        "origen": "analista",
+        "fecha": "2024-04-13T16:00:00Z",
+        "usuario": "Analista Sistema"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "funds_verification",
+        "tipo": "validacion",
+        "descripcion": "Falta verificación de fondos",
+        "severidad": "media",
+        "accionEsperada": "Solicitar verificación de fondos",
+        "bloqueaAprobacion": false
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad_109",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-13T10:00:00Z",
+        "updatedAt": "2024-04-14T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Valentina_Ramírez_20240413.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "Valentina Ramírez",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-05-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_109",
+        "timestamp": "2024-04-14T14:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: PENDIENTE",
+        "details": "El caso requiere revisión adicional",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_109",
+        "timestamp": "2024-04-13T10:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Validaciones completadas, requiere revisión manual",
+        "relatedDocumentId": "doc_identidad_109"
+      },
+      {
+        "id": "event_3_109",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Valentina_Ramírez_20240413.pdf",
+        "relatedDocumentId": "doc_identidad_109"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": [
+      {
+        "id": "funds_verification",
+        "ruleName": "Solicitar verificación de fondos",
+        "severity": "media",
+        "message": "Falta verificación de fondos"
+      }
+    ]
+  },
+  "110": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-12T12:00:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-09-25"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Andrés Morales"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "20-89012345-6"
+        }
+      },
+      {
+        "id": "format_required",
+        "titulo": "Formato requerido",
+        "resultado": "PASS",
+        "descripcionCorta": "Todos los campos obligatorios presentes",
+        "regla": "required_fields.all_present",
+        "evidencia": {
+          "campo": "all_fields",
+          "valor": "complete"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "20-89012345-6"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Andrés Morales"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-11-30"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-09-25"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$160,000.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "additional_review",
+        "titulo": "Revisión adicional",
+        "icono": "review"
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "todo",
+        "timestamp": "2024-04-12T12:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "pendiente",
+        "origen": "analista",
+        "fecha": "2024-04-12T12:00:00Z",
+        "usuario": "Analista Sistema"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "additional_review",
+        "tipo": "validacion",
+        "descripcion": "Falta revisión adicional",
+        "severidad": "media",
+        "accionEsperada": "Solicitar revisión adicional",
+        "bloqueaAprobacion": false
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad_110",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-13T10:00:00Z",
+        "updatedAt": "2024-04-14T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Andrés_Morales_20240413.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "Andrés Morales",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-05-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_110",
+        "timestamp": "2024-04-14T14:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: EN_REVISION",
+        "details": "El caso requiere revisión adicional",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_110",
+        "timestamp": "2024-04-13T10:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Validaciones completadas, requiere revisión manual",
+        "relatedDocumentId": "doc_identidad_110"
+      },
+      {
+        "id": "event_3_110",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Andrés_Morales_20240413.pdf",
+        "relatedDocumentId": "doc_identidad_110"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": [
+      {
+        "id": "additional_review",
+        "ruleName": "Solicitar revisión adicional",
+        "severity": "media",
+        "message": "Falta revisión adicional"
+      }
+    ]
+  },
+  "111": {
+    "criteriosResumen": {
+      "estadoCriterios": "OK",
+      "ultimaEvaluacion": "2024-04-11T08:30:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-11-15"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Camila Herrera"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "27-89012345-6"
+        }
+      },
+      {
+        "id": "format_required",
+        "titulo": "Formato requerido",
+        "resultado": "PASS",
+        "descripcionCorta": "Todos los campos obligatorios presentes",
+        "regla": "required_fields.all_present",
+        "evidencia": {
+          "campo": "all_fields",
+          "valor": "complete"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "27-89012345-6"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Camila Herrera"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-12-05"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-11-15"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$190,000.00"
+      }
+    ],
+    "pendingItems": [],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "done",
+        "timestamp": "2024-04-11T08:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "ok",
+        "detalle": "Documentación completa y válida",
+        "origen": "analista",
+        "fecha": "2024-04-11T08:00:00Z",
+        "usuario": "Diego Morales"
+      },
+      {
+        "id": "task_2",
+        "titulo": "Validar información bancaria",
+        "status": "done",
+        "timestamp": "2024-04-11T09:00:00Z",
+        "tipo": "manual",
+        "accion": "Validar información bancaria",
+        "resultado": "ok",
+        "detalle": "Información bancaria verificada correctamente",
+        "origen": "analista",
+        "fecha": "2024-04-11T09:00:00Z",
+        "usuario": "Diego Morales"
+      },
+      {
+        "id": "task_3",
+        "titulo": "Aprobar caso",
+        "status": "done",
+        "timestamp": "2024-04-11T09:30:00Z",
+        "tipo": "manual",
+        "accion": "Aprobar caso",
+        "resultado": "ok",
+        "detalle": "Caso aprobado exitosamente - Todos los criterios cumplidos",
+        "origen": "analista",
+        "fecha": "2024-04-11T09:30:00Z",
+        "usuario": "Diego Morales"
+      },
+      {
+        "id": "task_auto_1",
+        "titulo": "Validación automática de identidad",
+        "status": "done",
+        "timestamp": "2024-04-11T07:30:00Z",
+        "tipo": "automatica",
+        "accion": "Validación automática de identidad",
+        "resultado": "ok",
+        "detalle": "Validación completada exitosamente",
+        "origen": "sistema",
+        "fecha": "2024-04-11T07:30:00Z"
+      },
+      {
+        "id": "task_auto_2",
+        "titulo": "Detección OCR de campos",
+        "status": "done",
+        "timestamp": "2024-04-11T07:15:00Z",
+        "tipo": "automatica",
+        "accion": "Detección OCR de campos del documento",
+        "resultado": "ok",
+        "origen": "sistema",
+        "fecha": "2024-04-11T07:15:00Z"
+      },
+      {
+        "id": "task_auto_3",
+        "titulo": "Validación de consistencia de datos",
+        "status": "done",
+        "timestamp": "2024-04-11T07:45:00Z",
+        "tipo": "automatica",
+        "accion": "Validación de consistencia de datos",
+        "resultado": "ok",
+        "detalle": "Todos los datos son consistentes",
+        "origen": "sistema",
+        "fecha": "2024-04-11T07:45:00Z"
+      }
+    ],
+    "pendientes": [],
+    "documentos": [
+      {
+        "id": "doc_identidad_111",
+        "name": "Documento de Identidad",
+        "status": "APPROVED",
+        "uploadedAt": "2024-04-09T08:00:00Z",
+        "updatedAt": "2024-04-10T11:30:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Camila_Herrera_20240409.pdf",
+        "extractedFields": {
+          "CUIT": "20-34567890-2",
+          "Nombre": "Camila Herrera",
+          "Fecha de emisión": "2023-08-20",
+          "Fecha de vencimiento": "2025-12-31"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_111",
+        "timestamp": "2024-04-10T11:30:00Z",
+        "type": "Aprobación",
+        "actor": "analyst",
+        "summary": "Analista aprobó el caso",
+        "details": "Caso aprobado exitosamente - Todos los criterios cumplidos",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_111",
+        "timestamp": "2024-04-10T10:00:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Todas las validaciones pasaron correctamente",
+        "relatedDocumentId": "doc_identidad_111"
+      },
+      {
+        "id": "event_3_111",
+        "timestamp": "2024-04-09T08:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Camila_Herrera_20240409.pdf",
+        "relatedDocumentId": "doc_identidad_111"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": []
+  },
+  "112": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-14T10:15:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-08-05"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Fernando Castro"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "20-90123456-7"
+        }
+      },
+      {
+        "id": "format_required",
+        "titulo": "Formato requerido",
+        "resultado": "PASS",
+        "descripcionCorta": "Todos los campos obligatorios presentes",
+        "regla": "required_fields.all_present",
+        "evidencia": {
+          "campo": "all_fields",
+          "valor": "complete"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "20-90123456-7"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Fernando Castro"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-10-10"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-08-05"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$130,000.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "final_approval",
+        "titulo": "Aprobación final",
+        "icono": "approval"
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "todo",
+        "timestamp": "2024-04-14T10:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "pendiente",
+        "origen": "analista",
+        "fecha": "2024-04-14T10:00:00Z",
+        "usuario": "Analista Sistema"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "final_approval",
+        "tipo": "validacion",
+        "descripcion": "Falta aprobación final",
+        "severidad": "media",
+        "accionEsperada": "Solicitar aprobación final",
+        "bloqueaAprobacion": false
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad_112",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-13T10:00:00Z",
+        "updatedAt": "2024-04-14T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Fernando_Castro_20240413.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "Fernando Castro",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-05-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_112",
+        "timestamp": "2024-04-14T14:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: PENDIENTE",
+        "details": "El caso requiere revisión adicional",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_112",
+        "timestamp": "2024-04-13T10:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Validaciones completadas, requiere revisión manual",
+        "relatedDocumentId": "doc_identidad_112"
+      },
+      {
+        "id": "event_3_112",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Fernando_Castro_20240413.pdf",
+        "relatedDocumentId": "doc_identidad_112"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": [
+      {
+        "id": "final_approval",
+        "ruleName": "Solicitar aprobación final",
+        "severity": "media",
+        "message": "Falta aprobación final"
+      }
+    ]
+  },
+  "113": {
+    "criteriosResumen": {
+      "estadoCriterios": "VALIDATION_FAILED",
+      "ultimaEvaluacion": "2024-04-07T15:20:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-05-20"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Isabella Ruiz"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "27-90123456-7"
+        }
+      },
+      {
+        "id": "funds_source",
+        "titulo": "Origen de fondos",
+        "resultado": "FAIL",
+        "descripcionCorta": "Origen de fondos no verificado",
+        "regla": "funds_source.verified == true",
+        "evidencia": {
+          "campo": "funds_source",
+          "valor": "not_verified"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "27-90123456-7"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Isabella Ruiz"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-06-15"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-05-20"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$180,000.00"
+      }
+    ],
+    "pendingItems": [],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "done",
+        "timestamp": "2024-04-07T14:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "ok",
+        "origen": "analista",
+        "fecha": "2024-04-07T14:00:00Z",
+        "usuario": "Analista Sistema"
+      },
+      {
+        "id": "task_2",
+        "titulo": "Validar origen de fondos",
+        "status": "done",
+        "timestamp": "2024-04-07T15:00:00Z",
+        "tipo": "manual",
+        "accion": "Validar origen de fondos",
+        "resultado": "fail",
+        "detalle": "Origen de fondos no puede ser verificado - Documentación insuficiente",
+        "origen": "analista",
+        "fecha": "2024-04-07T15:00:00Z",
+        "usuario": "Laura Fernández"
+      },
+      {
+        "id": "task_3",
+        "titulo": "Rechazar caso",
+        "status": "done",
+        "timestamp": "2024-04-07T15:20:00Z",
+        "tipo": "manual",
+        "accion": "Rechazar caso",
+        "resultado": "fail",
+        "detalle": "Caso rechazado: Origen de fondos no verificado - No se pudo validar la procedencia de los fondos",
+        "origen": "analista",
+        "fecha": "2024-04-07T15:20:00Z",
+        "usuario": "Laura Fernández"
+      },
+      {
+        "id": "task_auto_1",
+        "titulo": "Validación automática de identidad",
+        "status": "done",
+        "timestamp": "2024-04-07T13:30:00Z",
+        "tipo": "automatica",
+        "accion": "Validación automática de identidad",
+        "resultado": "ok",
+        "detalle": "Validación completada",
+        "origen": "sistema",
+        "fecha": "2024-04-07T13:30:00Z"
+      },
+      {
+        "id": "task_auto_2",
+        "titulo": "Validación de origen de fondos",
+        "status": "done",
+        "timestamp": "2024-04-07T13:45:00Z",
+        "tipo": "automatica",
+        "accion": "Validación de origen de fondos",
+        "resultado": "fail",
+        "detalle": "Validación automática falló: origen de fondos no verificado",
+        "origen": "sistema",
+        "fecha": "2024-04-07T13:45:00Z"
+      }
+    ],
+    "pendientes": [],
+    "documentos": [
+      {
+        "id": "doc_identidad_113",
+        "name": "Documento de Identidad",
+        "status": "APPROVED",
+        "uploadedAt": "2024-04-07T08:00:00Z",
+        "updatedAt": "2024-04-07T15:20:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Isabella_Ruiz_20240407.pdf",
+        "extractedFields": {
+          "CUIT": "27-90123456-7",
+          "Nombre": "Isabella Ruiz",
+          "Fecha de emisión": "2023-06-15",
+          "Fecha de vencimiento": "2025-05-20"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      },
+      {
+        "id": "doc_fondos_113",
+        "name": "Origen de Fondos",
+        "status": "REJECTED",
+        "uploadedAt": "2024-04-07T09:00:00Z",
+        "updatedAt": "2024-04-07T15:00:00Z",
+        "source": "MANUAL",
+        "fileName": "Origen_Fondos_Isabella_Ruiz_20240407.pdf",
+        "extractedFields": {},
+        "validations": [
+          {
+            "id": "funds_source",
+            "name": "Origen de fondos",
+            "result": "fail",
+            "rule": "Origen de fondos debe ser verificado",
+            "evidence": "Origen de fondos no verificado",
+            "impact": "Bloquea aprobación",
+            "details": "El origen de fondos no puede ser verificado debido a documentación insuficiente. No se pudo validar la procedencia de los fondos declarados."
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_113",
+        "timestamp": "2024-04-07T15:20:00Z",
+        "type": "Rechazo",
+        "actor": "analyst",
+        "summary": "Laura Fernández rechazó el caso",
+        "details": "Caso rechazado: Origen de fondos no verificado - No se pudo validar la procedencia de los fondos",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_113",
+        "timestamp": "2024-04-07T15:00:00Z",
+        "type": "Validación manual",
+        "actor": "analyst",
+        "summary": "Laura Fernández: Validación de origen de fondos falló",
+        "details": "Origen de fondos no puede ser verificado - Documentación insuficiente",
+        "relatedDocumentId": "doc_fondos_113"
+      },
+      {
+        "id": "event_3_113",
+        "timestamp": "2024-04-07T13:45:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Validación automática de origen de fondos falló",
+        "details": "Validación automática falló: origen de fondos no verificado",
+        "relatedDocumentId": "doc_fondos_113"
+      },
+      {
+        "id": "event_4_113",
+        "timestamp": "2024-04-07T09:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Origen de Fondos",
+        "details": "Archivo: Origen_Fondos_Isabella_Ruiz_20240407.pdf",
+        "relatedDocumentId": "doc_fondos_113"
+      },
+      {
+        "id": "event_5_113",
+        "timestamp": "2024-04-07T08:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Isabella_Ruiz_20240407.pdf",
+        "relatedDocumentId": "doc_identidad_113"
+      },
+      {
+        "id": "event_6_113",
+        "timestamp": "2024-04-07T08:15:00Z",
+        "type": "OCR ejecutado",
+        "actor": "system",
+        "summary": "Proceso OCR completado sobre documento de identidad",
+        "details": "Campos detectados: CUIT, Nombre, Fechas",
+        "relatedDocumentId": "doc_identidad_113"
+      },
+      {
+        "id": "event_7_113",
+        "timestamp": "2024-04-07T13:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Validación automática de identidad completada",
+        "details": "Validación completada exitosamente",
+        "relatedDocumentId": "doc_identidad_113"
+      },
+      {
+        "id": "event_8_113",
+        "timestamp": "2024-04-07T07:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: Rechazado",
+        "details": "El caso fue creado y asignado para revisión",
+        "relatedDocumentId": null
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": []
+  },
+  "114": {
+    "criteriosResumen": {
+      "estadoCriterios": "REVIEW_REQUIRED",
+      "ultimaEvaluacion": "2024-04-13T14:00:00Z",
+      "fuente": "OCR"
+    },
+    "validacionesAutomaticas": [
+      {
+        "id": "exp_date",
+        "titulo": "Vigencia del documento",
+        "resultado": "PASS",
+        "descripcionCorta": "Documento vigente",
+        "regla": "expiry_date > today+30",
+        "evidencia": {
+          "campo": "expiry_date",
+          "valor": "2025-06-12"
+        }
+      },
+      {
+        "id": "ownership",
+        "titulo": "Titularidad",
+        "resultado": "PASS",
+        "descripcionCorta": "Titular coincide",
+        "regla": "doc.holder_id == customer.holder_id",
+        "evidencia": {
+          "campo": "holder",
+          "valor": "Ricardo Vargas"
+        }
+      },
+      {
+        "id": "cuit_consistency",
+        "titulo": "Consistencia CUIT",
+        "resultado": "PASS",
+        "descripcionCorta": "CUIT válido y consistente",
+        "regla": "cuit_format_valid && cuit_matches_document",
+        "evidencia": {
+          "campo": "cuit",
+          "valor": "20-01234567-8"
+        }
+      },
+      {
+        "id": "format_required",
+        "titulo": "Formato requerido",
+        "resultado": "PASS",
+        "descripcionCorta": "Todos los campos obligatorios presentes",
+        "regla": "required_fields.all_present",
+        "evidencia": {
+          "campo": "all_fields",
+          "valor": "complete"
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "campo": "CUIT",
+        "valor": "20-01234567-8"
+      },
+      {
+        "campo": "Nombre",
+        "valor": "Ricardo Vargas"
+      },
+      {
+        "campo": "Fecha de emisión",
+        "valor": "2023-12-20"
+      },
+      {
+        "campo": "Fecha de vencimiento",
+        "valor": "2025-06-12"
+      },
+      {
+        "campo": "Monto",
+        "valor": "$105,000.00"
+      }
+    ],
+    "pendingItems": [
+      {
+        "id": "compliance_check",
+        "titulo": "Verificación de cumplimiento",
+        "icono": "compliance"
+      }
+    ],
+    "historialTareas": [
+      {
+        "id": "task_1",
+        "titulo": "Revisar documentación adjunta",
+        "status": "todo",
+        "timestamp": "2024-04-13T14:00:00Z",
+        "tipo": "manual",
+        "accion": "Revisar documentación adjunta",
+        "resultado": "pendiente",
+        "origen": "analista",
+        "fecha": "2024-04-13T14:00:00Z",
+        "usuario": "Analista Sistema"
+      }
+    ],
+    "pendientes": [
+      {
+        "id": "compliance_check",
+        "tipo": "validacion",
+        "descripcion": "Falta verificación de cumplimiento",
+        "severidad": "media",
+        "accionEsperada": "Solicitar verificación de cumplimiento",
+        "bloqueaAprobacion": false
+      }
+    ],
+    "documentos": [
+      {
+        "id": "doc_identidad_114",
+        "name": "Documento de Identidad",
+        "status": "REVIEW_REQUIRED",
+        "uploadedAt": "2024-04-13T10:00:00Z",
+        "updatedAt": "2024-04-14T14:00:00Z",
+        "source": "OCR",
+        "fileName": "DNI_Ricardo_Vargas_20240413.pdf",
+        "extractedFields": {
+          "CUIT": "20-12345678-9",
+          "Nombre": "Ricardo Vargas",
+          "Fecha de emisión": "2024-01-15",
+          "Fecha de vencimiento": "2024-05-15"
+        },
+        "validations": [
+          {
+            "id": "exp_date",
+            "name": "Vigencia del documento",
+            "result": "ok",
+            "rule": "Campo Fecha de vencimiento debe ser mayor a hoy + 30 días",
+            "evidence": "Documento vigente",
+            "impact": "Informativo"
+          },
+          {
+            "id": "ownership",
+            "name": "Titularidad",
+            "result": "ok",
+            "rule": "Titular del documento debe coincidir con datos del cliente",
+            "evidence": "Titular coincide",
+            "impact": "Informativo"
+          }
+        ]
+      }
+    ],
+    "auditEvents": [
+      {
+        "id": "event_1_114",
+        "timestamp": "2024-04-14T14:00:00Z",
+        "type": "Cambio de estado",
+        "actor": "system",
+        "summary": "Estado del caso cambiado a: PENDIENTE",
+        "details": "El caso requiere revisión adicional",
+        "relatedDocumentId": null
+      },
+      {
+        "id": "event_2_114",
+        "timestamp": "2024-04-13T10:30:00Z",
+        "type": "Validación automática",
+        "actor": "system",
+        "summary": "Ejecutadas validaciones automáticas",
+        "details": "Validaciones completadas, requiere revisión manual",
+        "relatedDocumentId": "doc_identidad_114"
+      },
+      {
+        "id": "event_3_114",
+        "timestamp": "2024-04-13T10:00:00Z",
+        "type": "Documento subido",
+        "actor": "client",
+        "summary": "Cliente subió documento: Documento de Identidad",
+        "details": "Archivo: DNI_Ricardo_Vargas_20240413.pdf",
+        "relatedDocumentId": "doc_identidad_114"
+      }
+    ],
+    "pendingRequirements": [],
+    "validationIssues": [
+      {
+        "id": "compliance_check",
+        "ruleName": "Solicitar verificación de cumplimiento",
+        "severity": "media",
+        "message": "Falta verificación de cumplimiento"
+      }
+    ]
+  }
+}
