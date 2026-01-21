@@ -12,12 +12,12 @@ export default function CaseHeader() {
       <div className={styles.actions}>
         <button className={styles.iconButton} title="Configuración">
           <svg
-            width="20"
-            height="20"
+            width={20}
+            height={20}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
           >
@@ -27,12 +27,12 @@ export default function CaseHeader() {
         </button>
         <button className={styles.iconButton} title="Usuario">
           <svg
-            width="20"
-            height="20"
+            width={20}
+            height={20}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
           >

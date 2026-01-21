@@ -130,12 +130,12 @@ export default function CaseDashboard({ caseId }: CaseDashboardProps) {
                 <div className={styles.caseProfile}>
                   <div className={styles.avatar}>
                     <svg
-                      width="24"
-                      height="24"
+                      width={24}
+                      height={24}
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth={2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
@@ -149,12 +149,12 @@ export default function CaseDashboard({ caseId }: CaseDashboardProps) {
                       {caseData.status !== 'Aprobado' && caseData.status !== 'Rechazado' && (
                         <span className={styles.clockIcon}>
                           <svg
-                            width="14"
-                            height="14"
+                            width={14}
+                            height={14}
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            strokeWidth="2"
+                            strokeWidth={2}
                             strokeLinecap="round"
                             strokeLinejoin="round"
                           >

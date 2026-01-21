@@ -114,12 +114,12 @@ ${data.autoDecision ? `DECISIÓN AUTOMÁTICA: ${data.autoDecision.decision}\nReg
     if (result === 'PASS') {
       return (
         <svg
-          width="20"
-          height="20"
+          width={20}
+          height={20}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
           className={styles.resultIcon}
@@ -132,12 +132,12 @@ ${data.autoDecision ? `DECISIÓN AUTOMÁTICA: ${data.autoDecision.decision}\nReg
     if (result === 'WARN') {
       return (
         <svg
-          width="20"
-          height="20"
+          width={20}
+          height={20}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
           className={styles.resultIcon}
@@ -151,12 +151,12 @@ ${data.autoDecision ? `DECISIÓN AUTOMÁTICA: ${data.autoDecision.decision}\nReg
     if (result === 'FAIL') {
       return (
         <svg
-          width="20"
-          height="20"
+          width={20}
+          height={20}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
           className={styles.resultIcon}
@@ -408,12 +408,12 @@ ${data.autoDecision ? `DECISIÓN AUTOMÁTICA: ${data.autoDecision.decision}\nReg
                     {data.autoDecision.decision === 'APPROVED' ? (
                       <>
                         <svg
-                          width="16"
-                          height="16"
+                          width={16}
+                          height={16}
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          strokeWidth="2"
+                          strokeWidth={2}
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }}
@@ -426,12 +426,12 @@ ${data.autoDecision ? `DECISIÓN AUTOMÁTICA: ${data.autoDecision.decision}\nReg
                     ) : (
                       <>
                         <svg
-                          width="16"
-                          height="16"
+                          width={16}
+                          height={16}
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          strokeWidth="2"
+                          strokeWidth={2}
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }}

@@ -55,7 +55,7 @@ interface CaseDetail {
     id: string
     docType: string
     reason: string
-    dueDate?: string
+    dueDate?: string | null
   }>
   validationIssues?: Array<{
     id: string
